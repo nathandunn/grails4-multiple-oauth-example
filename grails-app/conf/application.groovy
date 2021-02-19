@@ -93,8 +93,8 @@ grails.plugin.springsecurity.logout.handlerNames = ['rememberMeServices', 'secur
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'demo.Person'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'demo.PersonAuthority'
 grails.plugin.springsecurity.authority.className = 'demo.Authority'
-grails.plugin.springsecurity.requestMap.className = 'demo.RequestMap'
-grails.plugin.springsecurity.securityConfigType = 'Requestmap'
+//grails.plugin.springsecurity.requestMap.className = 'demo.RequestMap'
+//grails.plugin.springsecurity.securityConfigType = 'Requestmap'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],
 	[pattern: '/error',          access: ['permitAll']],
