@@ -5,7 +5,34 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class BootStrap {
 
-//    def grailsApplication
+    BookDataService bookDataService
+    AuthorityService authorityService
+    PersonService personService
+    PersonAuthorityService personAuthorityService
+
+
+    def init = { servletContext ->
+        List<String> authorities = ['ROLE_BOSS', 'ROLE_EMPLOYEE']
+        authorities.each { String authority ->
+            if ( !authorityService.findByAuthority(authority) ) {
+                authorityService.save(authority)
+            }
+        }
+
+        if ( !personService.findByUsername('sherlock') ) {
+            Person u = personService.save('sherlock', 'elementary')
+            personAuthorityService.save(u, authorityService.findByAuthority('ROLE_BOSS'))
+        }
+
+        if ( !personService.findByUsername('watson') ) {
+            Person u = personService.save('watson', '221Bbakerstreet')
+            personAuthorityService.save(u, authorityService.findByAuthority('ROLE_EMPLOYEE'))
+        }
+
+        for (Map<String, String> bookInfo : (GRAILS_BOOKS + GROOVY_BOOKS)) {
+            bookDataService.save(bookInfo.title, bookInfo.author, bookInfo.about, bookInfo.href, bookInfo.image)
+        }
+    }
 
     public final static List< Map<String, String> > GRAILS_BOOKS = [
             [
@@ -104,13 +131,6 @@ class BootStrap {
             ],
     ] as List< Map<String, String> >
 
-    BookDataService bookDataService
-
-    def init = { servletContext ->
-        for (Map<String, String> bookInfo : (GRAILS_BOOKS + GROOVY_BOOKS)) {
-            bookDataService.save(bookInfo.title, bookInfo.author, bookInfo.about, bookInfo.href, bookInfo.image)
-        }
-    }
 
     def destroy = {
     }
