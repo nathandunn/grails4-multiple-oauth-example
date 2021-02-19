@@ -38,6 +38,7 @@ grails {
 						secret = "${System.getenv().get('GOOGLE_SECRET')}" //<7>
 						scope = org.pac4j.oauth.client.Google2Client.Google2Scope.EMAIL_AND_PROFILE //<8>
 						defaultRoles = [] //<9>
+//						defaultRoles = ['ROLE_USER', 'ROLE_GOOGLE']
 					}
 					github {
 						client = org.pac4j.oauth.client.GitHubClient//<5>
@@ -45,6 +46,7 @@ grails {
 						secret = "${System.getenv().get('GITHUB_SECRET')}" //<7>
 						scope = org.pac4j.oauth.client.GitHubClient.DEFAULT_SCOPE //<8>
 						defaultRoles = [] //<9>
+//						defaultRoles = ['ROLE_USER', 'ROLE_GOOGLE']
 					}
 //					orcid {
 //						client = org.pac4j.oauth.client.OrcidClient //<5>
