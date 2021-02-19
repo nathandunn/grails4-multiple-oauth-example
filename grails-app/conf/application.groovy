@@ -39,6 +39,21 @@ grails {
 						scope = org.pac4j.oauth.client.Google2Client.Google2Scope.EMAIL_AND_PROFILE //<8>
 						defaultRoles = [] //<9>
 					}
+					github {
+						client = org.pac4j.oauth.client.GitHubClient//<5>
+						key = "${System.getenv().get('GITHUB_KEY')}" //<6>
+						secret = "${System.getenv().get('GITHUB_SECRET')}" //<7>
+						scope = org.pac4j.oauth.client.GitHubClient.DEFAULT_SCOPE //<8>
+						defaultRoles = [] //<9>
+					}
+//					orcid {
+//						client = org.pac4j.oauth.client.OrcidClient //<5>
+//						key = "${System.getenv().get('ORCID_KEY')}" //<6>
+//						secret = "${System.getenv().get('ORCID_SECRET')}" //<7>
+//						// scope is set by default
+////						scope = org.pac4j.oauth.client.OrcidClient //<8>
+//						defaultRoles = [] //<9>
+//					}
 				}
 			}
 			providerNames = ['anonymousAuthenticationProvider'] // <10>
@@ -61,7 +76,9 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 		[pattern: '/bookFavourite/index', filters: ANONYMOUS_FILTERS], // <1>
 		[pattern: '/auth/success', filters: ANONYMOUS_FILTERS], // <1>
 		[pattern: '/oauth/authenticate/google', filters: ANONYMOUS_FILTERS], // <1>
+		[pattern: '/oauth/authenticate/github', filters: ANONYMOUS_FILTERS], // <1>
 		[pattern: '/oauth/callback/google', filters: ANONYMOUS_FILTERS], // <1>
+		[pattern: '/oauth/callback/github', filters: ANONYMOUS_FILTERS], // <1>
 		[pattern: '/**', filters: 'JOINED_FILTERS,-anonymousAuthenticationFilter,-exceptionTranslationFilter,-authenticationProcessingFilter,-securityContextPersistenceFilter,-rememberMeAuthenticationFilter'],  // <1>
 ]
 //end::filterChain[]

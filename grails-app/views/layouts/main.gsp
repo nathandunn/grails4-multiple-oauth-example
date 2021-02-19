@@ -47,6 +47,7 @@
         <span>|</span>
         <sec:ifNotLoggedIn>
             <g:render template="/auth/loginWithGoogle"/>
+            <g:render template="/auth/loginWithGitHub"/>
         </sec:ifNotLoggedIn>
         <sec:ifLoggedIn>
             <g:form controller="logout" style="display: inline;">
