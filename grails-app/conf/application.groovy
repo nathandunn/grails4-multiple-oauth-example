@@ -46,7 +46,7 @@ grails {
 						secret = "${System.getenv().get('GITHUB_SECRET')}" //<7>
 						scope = org.pac4j.oauth.client.GitHubClient.DEFAULT_SCOPE //<8>
 //						defaultRoles = [] //<9>
-						defaultRoles = ['ROLE_ADMIN']
+						defaultRoles = ['ROLE_USER']
 					}
 //					orcid {
 //						client = org.pac4j.oauth.client.OrcidClient //<5>

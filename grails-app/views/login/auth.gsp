@@ -9,7 +9,9 @@
     <div class="inner centered" >
         <div class="fheader"><g:message code='springSecurity.login.header'/></div>
         <g:if test='${flash.message}'>
+            A
             <div class="login_message">${flash.message}</div>
+            B
         </g:if>
     </div>
 </div>

@@ -54,7 +54,9 @@
                 <input type="submit" value="${g.message(code: "logout", default:"Logout")}"/>
             </g:form>
         </sec:ifLoggedIn>
-    </div>
+        <g:link controller="person" action="index">Show all persons</g:link>
+    <g:link controller="person" action="show" params="[id:2]">Show one persons</g:link>
+</div>
 
     <g:if test="${flash.message}">
         <div class="message" style="display: block">${flash.message}</div>
