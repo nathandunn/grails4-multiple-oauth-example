@@ -5,7 +5,41 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class BootStrap {
 
-//    def grailsApplication
+    BookDataService bookDataService
+    AuthorityService authorityService
+    PersonService personService
+    PersonAuthorityService personAuthorityService
+
+
+    def init = { servletContext ->
+        List<String> authorities = ['ROLE_ADMIN', 'ROLE_USER']
+        authorities.each { String authority ->
+            if ( !authorityService.findByAuthority(authority) ) {
+                authorityService.save(authority)
+            }
+        }
+
+        if ( !personService.findByUsername('ndunnme@gmail.com') ) {
+//            Person u = personService.save('sherlock', 'elementary')
+            Person u = personService.save('ndunnme@gmail.com')
+            personAuthorityService.save(u, authorityService.findByAuthority('ROLE_ADMIN'))
+        }
+
+        if ( !personService.findByUsername('sherlock') ) {
+//            Person u = personService.save('sherlock', 'elementary')
+            Person u = personService.save('sherlock')
+            personAuthorityService.save(u, authorityService.findByAuthority('ROLE_ADMIN'))
+        }
+
+        if ( !personService.findByUsername('watson') ) {
+            Person u = personService.save('watson')
+            personAuthorityService.save(u, authorityService.findByAuthority('ROLE_USER'))
+        }
+
+        for (Map<String, String> bookInfo : (GRAILS_BOOKS + GROOVY_BOOKS)) {
+            bookDataService.save(bookInfo.title, bookInfo.author, bookInfo.about, bookInfo.href, bookInfo.image)
+        }
+    }
 
     public final static List< Map<String, String> > GRAILS_BOOKS = [
             [
@@ -104,13 +138,6 @@ class BootStrap {
             ],
     ] as List< Map<String, String> >
 
-    BookDataService bookDataService
-
-    def init = { servletContext ->
-        for (Map<String, String> bookInfo : (GRAILS_BOOKS + GROOVY_BOOKS)) {
-            bookDataService.save(bookInfo.title, bookInfo.author, bookInfo.about, bookInfo.href, bookInfo.image)
-        }
-    }
 
     def destroy = {
     }
