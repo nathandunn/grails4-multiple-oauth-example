@@ -11,8 +11,8 @@ class PersonController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    @Secured('isAuthenticated()')
-//    @Secured(["ROLE_ADMIN"])
+//    @Secured('isAuthenticated()')
+    @Secured(["ROLE_ADMIN"])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         def personCount = personService.count()
@@ -23,9 +23,10 @@ class PersonController {
         respond personList, model:[personCount: personService.count()]
     }
 
-//    @Secured(["ROLE_ADMIN","ROLE_USER"])
+    @Secured(["ROLE_ADMIN","ROLE_USER"])
     def show(Long id) {
-        respond personService.get(id)
+        respond Person.get(id)
+//        respond personService.get(id)
     }
 
     def create() {
