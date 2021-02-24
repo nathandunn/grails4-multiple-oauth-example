@@ -74,6 +74,7 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 		[pattern: '/**/images/**',   filters: 'none'],
 		[pattern: '/**/favicon.ico', filters: 'none'],
 		[pattern: '/', filters: ANONYMOUS_FILTERS], // <1>
+		[pattern: '/person/index', filters: ANONYMOUS_FILTERS],  // <1>
 		[pattern: '/book/show/*', filters: ANONYMOUS_FILTERS],  // <1>
 		[pattern: '/bookFavourite/index', filters: ANONYMOUS_FILTERS], // <1>
 		[pattern: '/auth/success', filters: ANONYMOUS_FILTERS], // <1>

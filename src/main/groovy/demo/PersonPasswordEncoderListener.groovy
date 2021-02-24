@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import grails.events.annotation.gorm.Listener
 import groovy.transform.CompileStatic
 
+@Deprecated
 @CompileStatic
 class PersonPasswordEncoderListener {
 
@@ -27,9 +28,9 @@ class PersonPasswordEncoderListener {
     private void encodePasswordForEvent(AbstractPersistenceEvent event) {
         if (event.entityObject instanceof Person) {
             Person u = event.entityObject as Person
-            if (u.password && ((event instanceof  PreInsertEvent) || (event instanceof PreUpdateEvent && u.isDirty('password')))) {
-                event.getEntityAccess().setProperty('password', encodePassword(u.password))
-            }
+//            if (u.password && ((event instanceof  PreInsertEvent) || (event instanceof PreUpdateEvent && u.isDirty('password')))) {
+//                event.getEntityAccess().setProperty('password', encodePassword(u.password))
+//            }
         }
     }
 

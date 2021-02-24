@@ -12,21 +12,28 @@ class BootStrap {
 
 
     def init = { servletContext ->
-        List<String> authorities = ['ROLE_BOSS', 'ROLE_EMPLOYEE']
+        List<String> authorities = ['ROLE_ADMIN', 'ROLE_USER']
         authorities.each { String authority ->
             if ( !authorityService.findByAuthority(authority) ) {
                 authorityService.save(authority)
             }
         }
 
+        if ( !personService.findByUsername('ndunnme@gmail.com') ) {
+//            Person u = personService.save('sherlock', 'elementary')
+            Person u = personService.save('ndunnme@gmail.com')
+            personAuthorityService.save(u, authorityService.findByAuthority('ROLE_ADMIN'))
+        }
+
         if ( !personService.findByUsername('sherlock') ) {
-            Person u = personService.save('sherlock', 'elementary')
-            personAuthorityService.save(u, authorityService.findByAuthority('ROLE_BOSS'))
+//            Person u = personService.save('sherlock', 'elementary')
+            Person u = personService.save('sherlock')
+            personAuthorityService.save(u, authorityService.findByAuthority('ROLE_ADMIN'))
         }
 
         if ( !personService.findByUsername('watson') ) {
-            Person u = personService.save('watson', '221Bbakerstreet')
-            personAuthorityService.save(u, authorityService.findByAuthority('ROLE_EMPLOYEE'))
+            Person u = personService.save('watson')
+            personAuthorityService.save(u, authorityService.findByAuthority('ROLE_USER'))
         }
 
         for (Map<String, String> bookInfo : (GRAILS_BOOKS + GROOVY_BOOKS)) {

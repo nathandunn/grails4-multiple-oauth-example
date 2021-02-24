@@ -6,7 +6,7 @@ import demo.JwtCookieTokenReader
 import org.springframework.security.web.authentication.logout.CookieClearingLogoutHandler
 //end::cookieClearingImport[]
 beans = {
-    personPasswordEncoderListener(PersonPasswordEncoderListener)
+//    personPasswordEncoderListener(PersonPasswordEncoderListener)
     //tag::tokenReader[]
     tokenReader(JwtCookieTokenReader) {
         cookieName = 'jwt'

@@ -6,4 +6,6 @@ import grails.gorm.services.Service
 interface  PersonAuthorityService {
 
     PersonAuthority save(Person person, Authority authority)
+
+    Number count()
 }
