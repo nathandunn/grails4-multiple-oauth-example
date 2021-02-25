@@ -8,6 +8,7 @@ import grails.rest.RestfulController
 class ApiController extends RestfulController<Book>{
 
     static responseFormats = ['json', 'xml']
+//    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE",index:"GET"]
     ApiController() {
         super(Book)
     }

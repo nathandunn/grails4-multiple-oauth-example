@@ -1,5 +1,7 @@
 ---
 grails:
+    cors:
+        enabled: true
     profile: web
     codegen:
         defaultPackage: demo
@@ -11,7 +13,15 @@ grails:
             # Whether to translate GORM events into Reactor events
             # Disabled by default for performance reasons
             events: false
-info:
+
+    plugin:
+        springsecurity:
+            rest:
+                token:
+                    generation:
+                        jwt:
+#                            algorithm: "RS256"
+                            algorithm: "HS256"
     app:
         name: '@info.app.name@'
         version: '@info.app.version@'
@@ -36,6 +46,7 @@ spring:
 #    enabled: false
 #    jmx:
 #        enabled: true
+
 
 management:
     endpoints:

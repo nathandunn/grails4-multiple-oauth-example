@@ -8,9 +8,9 @@ import org.springframework.security.web.authentication.logout.CookieClearingLogo
 beans = {
 //    personPasswordEncoderListener(PersonPasswordEncoderListener)
     //tag::tokenReader[]
-    tokenReader(JwtCookieTokenReader) {
-        cookieName = 'jwt'
-    }
+//    tokenReader(JwtCookieTokenReader) {
+//        cookieName = 'jwt'
+//    }
     //end::tokenReader[]
     //tag::cookieClearing[]
     cookieClearingLogoutHandler(CookieClearingLogoutHandler, ['jwt'])

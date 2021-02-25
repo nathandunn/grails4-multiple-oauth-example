@@ -21,12 +21,13 @@ grails {
 			rest {
 				token {
 					validation {
-						useBearerToken = false // <1>
+						useBearerToken = true // <1>
 						enableAnonymousAccess = true // <2>
 					}
 					storage {
 						jwt {
 							secret = 'foobar123'*4 //<3>
+							useSignedJwt = true
 						}
 					}
 				}
