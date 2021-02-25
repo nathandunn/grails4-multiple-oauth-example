@@ -13,5 +13,12 @@ class ApiController extends RestfulController<Book>{
         super(Book)
     }
 
-//    def index() { }
+    def index() {
+        println "request: ${request}"
+        println "request JSON: ${request.JSON}"
+        println "params : ${params}"
+        response.setHeader("Access-Control-Allow-Headers",'Origin, X-Requested-With, Content-Type, Accept, Authorization,  X-PINGOTHER\'')
+        response.setHeader("Access-Control-Allow-Credentials","true")
+        respond Book.all
+    }
 }

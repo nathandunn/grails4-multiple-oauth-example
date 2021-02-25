@@ -11,6 +11,12 @@ import javax.servlet.http.Cookie
 @Slf4j
 class AuthController implements GrailsConfigurationAware {
 
+
+    static beforeInterceptor = {
+        println "trying to auth "
+    }
+
+
     TokenReader tokenReader
 
     int jwtExpiration
@@ -24,6 +30,8 @@ class AuthController implements GrailsConfigurationAware {
 
     @Secured('permitAll')
     def success(String token) {
+        response.setHeader("Access-Control-Allow-Headers",'Origin, X-Requested-With, Content-Type, Accept, Authorization,  X-PINGOTHER\'')
+        response.setHeader("Access-Control-Allow-Credentials","true")
         log.debug('token value {}', token)
         if (token) {
             Cookie cookie = jwtCookie(token)
