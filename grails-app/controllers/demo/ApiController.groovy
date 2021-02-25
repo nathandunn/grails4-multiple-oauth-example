@@ -3,8 +3,8 @@ package demo
 import grails.plugin.springsecurity.annotation.Secured
 import grails.rest.RestfulController
 
-@Secured(["ROLE_USER"])
-//@Secured('permitAll')
+//@Secured(["ROLE_USER"])
+@Secured('permitAll')
 class ApiController extends RestfulController<Book>{
 
     static responseFormats = ['json', 'xml']
@@ -17,6 +17,12 @@ class ApiController extends RestfulController<Book>{
         println "request: ${request}"
         println "request JSON: ${request.JSON}"
         println "params : ${params}"
+        println "cookies: ${request.cookies}"
+        request.cookies.findAll().each {
+            println it
+        }
+        def ids = request.getHeader("ID")
+        println "ids: ${ids}"
         response.setHeader("Access-Control-Allow-Headers",'Origin, X-Requested-With, Content-Type, Accept, Authorization,  X-PINGOTHER\'')
         response.setHeader("Access-Control-Allow-Credentials","true")
         respond Book.all
